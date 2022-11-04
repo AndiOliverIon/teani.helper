@@ -1,0 +1,68 @@
+What is Teani.Helper?
+
+Teani.Helper is a simple little library build to ease a bit the development by gaining some results
+without the boring part of writing all the time the same lines of codes.
+
+What it contains?
+
+- A simple logger class which can write log items into the harddrive;
+- Azure Blob Storage Manager (List, Upload, Download and Size);
+- IOExtensions
+
+(Here more will be added).
+
+Where can I get it?
+
+First, install NuGet. Then, install Teani.Helper from the package manager console.
+
+Examples:
+### Logger
+
+It adds elements into a queue and write them to the harddrive as soon is possible.
+
+    //Initialization
+    Log.Start();
+
+    //Writing some messages
+    Log.Write(eMessageType.Debug, "Debug not stored");
+    Log.Write(eMessageType.Information, "Some information");
+    Log.Write(eMessageType.Success, "Some success");
+    Log.Write(eMessageType.Error, "Some error");
+    Log.Write(eMessageType.Warning, "Some warning");
+
+    Log.Write(new Exception("Some exception, no stack"));
+    Log.Write(new Exception("Some exception, with stack"), true);
+
+    //Declaring that debug messages should also be stored.
+    Log.StoreDebugMessages = true;
+    Log.Write(Tni.Helper.Entities.eMessageType.Debug, "Debug stored");
+
+#### Output of the logs
+    {"RecordedAt":"2022-11-04T10:33:22.1985371+02:00","MessageType":5,"Message":"Debug not stored"}
+    {"RecordedAt":"2022-11-04T10:33:22.203045+02:00","MessageType":1,"Message":"Some information"}
+    {"RecordedAt":"2022-11-04T10:33:22.2030473+02:00","MessageType":4,"Message":"Some success"}
+    {"RecordedAt":"2022-11-04T10:33:22.2030477+02:00","MessageType":2,"Message":"Some error"}
+    {"RecordedAt":"2022-11-04T10:33:22.2030479+02:00","MessageType":3,"Message":"Some warning"}
+    {"RecordedAt":"2022-11-04T10:33:22.2031597+02:00","MessageType":2,"Message":"Some exception, no stack"}
+    {"RecordedAt":"2022-11-04T10:33:22.2031991+02:00","MessageType":2,"Message":"Some exception, with stack"}
+    {"RecordedAt":"2022-11-04T10:33:22.2032215+02:00","MessageType":5,"Message":"Debug stored"}
+
+
+### Azure Blob Storage Manager
+	var asm = new AzureStorageManager("{YourAzureConnectionString}");
+
+    //Specifying each time the container.
+    var container = "YourWorkingContainer";
+    var list = await asm.GetList(container);
+    var size = await asm.GetSize(container);
+
+    await asm.UploadFile(new FileInfo(@"d:\temp\testfile.json"), true, container);
+    FileInfo downloadedFile = await asm.DownloadFile(new FileInfo(@"c:\temp\testfile.json"), container);
+
+    //Specifying the work container
+    asm.WorkContainer = container;
+    list = await asm.GetList();
+    size = await asm.GetSize();
+
+    await asm.UploadFile(new FileInfo(@"d:\temp\testfile.json"), true);
+    FileInfo downloadedFile = await asm.DownloadFile(new FileInfo(@"c:\temp\testfile.json"));

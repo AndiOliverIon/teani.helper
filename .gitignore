@@ -1,0 +1,54 @@
+# compiled output
+/dist
+/tmp
+/out-tsc
+bin/
+obj/
+
+
+
+
+/PublishProfiles
+/.vs
+/obj
+/bin
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+*.repx
+*.slnf
+*.*~
+
+# IDE - VSCode
+.vscode
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# Setup files
+*.back
+*.msi
+*.cab
+*.exe
+*.pubxml
+*.user
+*.pdf
+*.sln
+*.slnf
+*.dbss
+*.user
+*.alx
+*.def
+
+
+# Configuration files
+appsettings.json
+appsettings.Development.json
+
