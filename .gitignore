@@ -5,9 +5,6 @@
 bin/
 obj/
 
-
-
-
 /PublishProfiles
 /.vs
 /obj
@@ -39,16 +36,8 @@ Thumbs.db
 *.exe
 *.pubxml
 *.user
-*.pdf
 *.sln
 *.slnf
 *.dbss
 *.user
-*.alx
 *.def
-
-
-# Configuration files
-appsettings.json
-appsettings.Development.json
-
