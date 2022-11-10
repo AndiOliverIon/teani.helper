@@ -13,7 +13,7 @@
     <PackageTags>helper</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-    <Version>1.0.4</Version>
+    <Version>1.0.5</Version>
     <Authors>Teani</Authors>
   </PropertyGroup>
 

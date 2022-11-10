@@ -9,6 +9,8 @@ What it contains?
 - Azure Blob Storage Manager (List, Upload, Download and Size);
 - Job engine (sequenced and parallel);
 - IOExtensions;
+- DateExtensions;
+- StringExtensions;
 
 (Here more will be added).
 
@@ -205,3 +207,39 @@ This will receive various job items, in a parallel way, that are to be executed 
     {"RecordedAt":"2022-11-05T20:42:00.3857071+02:00","MessageType":5,"Message":"Job [Parallel 3] was executed on lane [8]. Started: 11/5/2022 8:41:58 PM, Ended: 11/5/2022 8:42:00 PM, Duration: 00:00:02.0080272"}
     {"RecordedAt":"2022-11-05T20:42:00.4329664+02:00","MessageType":5,"Message":"Sequenced [Parallel 1.1] called for execution."}
     {"RecordedAt":"2022-11-05T20:42:00.433013+02:00","MessageType":5,"Message":"Job [Parallel 1.1] was executed on lane [7]. Started: 11/5/2022 8:41:58 PM, Ended: 11/5/2022 8:42:00 PM, Duration: 00:00:02.0087997"}
+
+#### IO extensions
+A collection of quick calls in regards of IO calculations
+
+DirectoryInfo ToDirectoryInfo(this string source)
+FileInfo ToFileInfo(this string source)
+DirectoryInfo EnsureExists(this DirectoryInfo source)
+DirectoryInfo Child(this DirectoryInfo source, string child, bool assureFolderExists = true)
+FileInfo ChildFile(this DirectoryInfo source, string child)
+string DisplaySize(this FileInfo source)
+string DisplaySize(this long byteCount)
+CopyAsyncTo(this FileInfo sourceFileName, FileInfo targetFileName, CancellationToken token, IProgress<double>? progress = null)
+CopyToAsync(this Stream source, Stream destination, int bufferSize, IProgress<long>? progress = null, CancellationToken cancellationToken = default)
+
+#### Date extensions
+
+A collection of quick calls in regards of date calculations
+DateTime StartOfDay(this DateTime source)
+DateTime StartOfMonth(this DateTime source)
+DateTime EndOfMonth(this DateTime source)
+Tuple<DateTime, DateTime> GetWeek(this DateTime source)
+List<Tuple<DateTime, DateTime>> GetMonthWeeks(this DateTime source)
+List<DateTime> ExtractDayOccurences(this Tuple<DateTime, DateTime> source, List<DayOfWeek> days)
+DateTime AddBusinessDays(this DateTime current, int days)
+int WeekOfYear(this DateTime source)
+DateTime FirstDateOfWeek(this int weekOfYear, int year)
+
+#### String extensions
+
+A collection of quick calls in regards of string operations calculations
+string JoinStr(this List<string> source, string separator = ",")
+RunAsProcessCommand(this string command, bool waitForOutput = true)
+string RemoveComments(this string source)
+string Compress(this string source)
+string Decompress(this string source)
+void JsonValid(this string json)

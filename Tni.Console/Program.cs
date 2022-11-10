@@ -1,13 +1,18 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using System.Xml.Linq;
 using Tni.Helper;
 using Tni.Helper.Entities;
 using Tni.Helper.Enums;
+using Tni.Helper.Extensions;
 
 Console.WriteLine("Starting test of the helper library");
 
 Logs();
 //AzureStorageManagerTest();
-Jobs();
+//Jobs();
+//Copy async
+//TestExtensions();
+
 
 Console.WriteLine("All done");
 Console.ReadKey();
@@ -188,5 +193,20 @@ async Task<object> ParallelJobs(JobItem job)
     Log.Write(eMessageType.Debug, $"Parallel [{job.Name}] called for execution.");
 
     return default;
+}
+void CopyAsync()
+{
+    var cancel = new CancellationTokenSource();
+    var sourceFile = new FileInfo(@"c:\temp\archive.zip");
+    var targetFile = new FileInfo(@"d:\temp\archive.zip");
+
+    
+}
+void TestExtensions()
+{
+    //string negativetest = "some invalid json string source";
+    string positiveTest = "{\r\n\t\r\n  \"Stations\": [\r\n\t\"masterchief\", \"vmWin10\"\t\r\n  ],\r\n  \"Versions\": [    \t\r\n\t{\r\n      \"Number\": 1005000,\r\n      \"Uri\": \"https://download.ardis.be/demo/ardis-demo-1.5.0.0.zip\",\r\n      \"Description\": \"Version 1.5.0 - Only for Andi.\",\r\n\t  \"PublishDate\": \"2022-11-02 11:00:00\"\r\n    }\r\n  ]\r\n}";
+    positiveTest.JsonValid();
+    //negativetest.JsonValid();
 }
 #endregion
